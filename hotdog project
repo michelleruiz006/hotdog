@@ -1,17 +1,22 @@
-num_of_ppl = int(input("Enter number of people attending: "))
-num_of_hotdogs_prp = int(input("Enter number of hot dogs each will eat: "))
+import math
+HOT_DOGS_PER_PACKAGE = 10
+HOT_DOGS_BUNS_PER_PACKAGE = 8
 
-hotdogs_per_package = 10
-buns_per_package = 8
+attendees = int(input('Enter the number of guests: '))
 
-total= num_of_ppl * num_of_hotdogs_prp
+hot_dogs_per_person = int(input('Hot dogs per person: '))
 
-hotdog_packages_needed = total // hotdogs_per_package
-hotdog_buns_needed = total // buns_per_package
-hotdogs_left_over = total % hotdogs_per_package
-buns_left_over = total % buns_per_package
+required_hot_dogs = attendees * hot_dogs_per_person
+packages_of_hot_dogs = required_hot_dogs / HOT_DOGS_PER_PACKAGE
+packages_of_hot_dog_buns = required_hot_dogs / HOT_DOGS_BUNS_PER_PACKAGE
 
-print("Minimum number of packages of hot dogs required =", hotdog_packages_needed)
-print("Minimum number of packages of hot dog buns required =", hotdog_buns_needed)
-print("Number of hot dogs left over =", hotdogs_left_over)
-print("Number of hot dogs buns left over =", buns_left_over)
+print(f"You require {math.ceil(packages_of_hot_dogs)} packs of hot dogs for the cookout.")
+print(f"You require {math.ceil(packages_of_hot_dog_buns)} packs of buns for the cookout.")
+
+remain_hotdogs = (math.ceil(packages_of_hot_dogs) * HOT_DOGS_PER_PACKAGE) - required_hot_dogs
+if remain_hotdogs != 0:
+    print(f'You have {remain_hotdogs} left over hot dogs')
+
+remain_buns = (math.ceil(packages_of_hot_dog_buns) * HOT_DOGS_BUNS_PER_PACKAGE) - required_hot_dogs
+if remain_buns != 0:
+    print(f'You have {remain_buns} left over hot dog buns. ')
